@@ -1,70 +1,53 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Deckbuilder</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Deckbuilder</div>
-      </div>
+    <h1>Deckbuilder</h1>
+    <div id="text-block">
+      <p>
+        This is a short bullet hell game with deckbuilder elements. The primary
+        goal is to survive waves of increasingly powerful enemies while also
+        upgrading a "deck" of bullets. Every few waves, the player will have the
+        opportunity to add a bullet to their deck. Bullets are fired out in a
+        random order, as if they were in a deck of cards that is shuffled every
+        time the cannon reloads.
+      </p>
+
+      <p>
+        There are 7 zones of difficulty, each with a varying amount of waves. When the player has cleared a zone, they can add a powerful passive relic to their
+        arsenal instead of a bullet. These relics give a passive buff and allow
+        for interesting synergies or open new gameplay paths.
+      </p>
+
+      <p>
+        The game uses a 4-element status system where different types of bullets
+        inflict different effects on enemies. Building a deck around these
+        elements is important to maximize damage output. The status effects
+        are explained in detail in the ingame instructions menu.
+      </p>
+
+      <p>
+        The average length of a game is 20 minutes. There are a total of 20
+        different types of bullets and 25 different relics available to the
+        player.
+      </p>
+
+      <p>
+          The game uses free art assets provided by the talented people at <a href=https://game-icons.net/>https://game-icons.net/</a>.
+      </p>
     </div>
-    <script>
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/deckbuilderwebgl.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/deckbuilderwebgl.data",
-        frameworkUrl: buildUrl + "/deckbuilderwebgl.framework.js",
-        codeUrl: buildUrl + "/deckbuilderwebgl.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "irrelv",
-        productName: "Deckbuilder",
-        productVersion: "1.0",
-      };
 
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+    <div id="download-link">
+      <a href="deckbuilder.7z">Download for Windows</a>
+    </div>
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        config.devicePixelRatio = 1;
-      } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
-      loadingBar.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      document.body.appendChild(script);
-    </script>
+    <div id="webgl-link">
+      <a href="webgl.html">Run the game in your browser (WebGL)</a>
+    </div>
   </body>
 </html>
